@@ -1,10 +1,13 @@
 package com.creditcardanalyzer.msclient.services;
 
+import com.creditcardanalyzer.msclient.domain.client.Client;
 import com.creditcardanalyzer.msclient.domain.client.ClientListingDto;
+import com.creditcardanalyzer.msclient.domain.client.ClientRegisterDto;
 import com.creditcardanalyzer.msclient.infra.repositories.ClientRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClientService {
@@ -19,5 +22,14 @@ public class ClientService {
                 .map(ClientListingDto::new)
                 .toList();
 
+    }
+
+    public Optional<Client> findClientByCpf(String cpf){
+        return repository.findByCpf(cpf);
+    }
+
+    public Client save(ClientRegisterDto data) {
+        var client = new Client(data);
+        return repository.save(client);
     }
 }
