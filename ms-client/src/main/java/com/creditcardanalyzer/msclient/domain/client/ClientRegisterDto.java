@@ -8,7 +8,6 @@ public record ClientRegisterDto(
         @NotBlank
         String name,
         @NotBlank
-        @Pattern(regexp = "\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}")
         String cpf,
         Integer age,
         @Email

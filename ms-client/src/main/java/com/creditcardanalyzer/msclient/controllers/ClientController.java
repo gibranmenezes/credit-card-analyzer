@@ -27,8 +27,8 @@ public class ClientController {
         return ResponseEntity.status(HttpStatus.OK).body(clientService.listAll()); 
     }
 
-    @GetMapping("/{cpf}")
-    public ResponseEntity<Optional<Client>> getClientByCpf(@PathVariable String cpf) {
+    @GetMapping(params = {"cpf"})
+    public ResponseEntity getClientByCpf(@RequestParam("cpf") String cpf) {
         var client = clientService.findClientByCpf(cpf);
         if (client.isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -39,7 +39,7 @@ public class ClientController {
     @PostMapping
     public ResponseEntity register(@RequestBody @Valid ClientRegisterDto data, UriComponentsBuilder uriBuilder) {
         var client = clientService.save(data);
-        var uri = uriBuilder.path("/clients/{cpf}").buildAndExpand(client.getId()).toUri();
+        var uri = uriBuilder.path("/clients/{id}").buildAndExpand(client.getId()).toUri();
 
         return ResponseEntity.created(uri).body(new ClientListingDto(client));
     }
