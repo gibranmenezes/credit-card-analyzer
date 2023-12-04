@@ -34,7 +34,6 @@ public class CreditCardController {
     public ResponseEntity register(@RequestBody CreditCardSaveRequest data, UriComponentsBuilder uriBuilder) {
         var card = creditCardService.save(data);
         var uri = uriBuilder.path("/cards/{id}").buildAndExpand(card.getId()).toUri();
-
         return ResponseEntity.created(uri).body(new CreditCardListResponse(card));
     }
 
