@@ -24,7 +24,7 @@ public class CreditCard implements Serializable {
     private BigDecimal income;
     private BigDecimal  baseLimit;
 
-    public CreditCard(CreditCardRegistrationData data) {
+    public CreditCard(CreditCardSaveRequest data) {
         this.name = data.name();
         this.brand = data.brand();
         this.income = data.income();
