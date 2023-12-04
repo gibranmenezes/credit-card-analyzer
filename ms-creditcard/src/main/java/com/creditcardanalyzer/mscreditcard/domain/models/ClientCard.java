@@ -1,4 +1,4 @@
-package com.creditcardanalyzer.mscreditcard.domain;
+package com.creditcardanalyzer.mscreditcard.domain.models;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

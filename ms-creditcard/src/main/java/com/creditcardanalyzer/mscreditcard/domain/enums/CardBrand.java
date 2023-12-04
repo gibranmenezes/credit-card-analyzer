@@ -1,4 +1,4 @@
-package com.creditcardanalyzer.mscreditcard.domain;
+package com.creditcardanalyzer.mscreditcard.domain.enums;
 
 public enum CardBrand {
     MASTERCARD,

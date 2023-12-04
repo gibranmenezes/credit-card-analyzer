@@ -1,8 +1,8 @@
 package com.creditcardanalyzer.msclient.services;
 
 import com.creditcardanalyzer.msclient.domain.client.Client;
-import com.creditcardanalyzer.msclient.domain.client.ClientListingDto;
-import com.creditcardanalyzer.msclient.domain.client.ClientRegisterDto;
+import com.creditcardanalyzer.msclient.domain.client.dtos.ClientListingDto;
+import com.creditcardanalyzer.msclient.domain.client.dtos.ClientRegisterDto;
 import com.creditcardanalyzer.msclient.infra.repositories.ClientRepository;
 import org.springframework.stereotype.Service;
 

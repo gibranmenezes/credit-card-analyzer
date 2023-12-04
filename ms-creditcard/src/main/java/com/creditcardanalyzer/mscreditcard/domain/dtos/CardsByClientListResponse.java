@@ -1,9 +1,9 @@
-package com.creditcardanalyzer.mscreditcard.domain;
+package com.creditcardanalyzer.mscreditcard.domain.dtos;
 
-import ch.qos.logback.core.net.server.Client;
+import com.creditcardanalyzer.mscreditcard.domain.models.ClientCard;
+import com.creditcardanalyzer.mscreditcard.domain.models.CreditCard;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 public record CardsByClientListResponse(String cpf, String brand, BigDecimal approvedLimit) {
 

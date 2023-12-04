@@ -1,8 +1,8 @@
-package com.creditcardanalyzer.mscreditcard.controller;
+package com.creditcardanalyzer.mscreditcard.resource;
 
-import com.creditcardanalyzer.mscreditcard.domain.CardsByClientListResponse;
-import com.creditcardanalyzer.mscreditcard.domain.CreditCardListResponse;
-import com.creditcardanalyzer.mscreditcard.domain.CreditCardSaveRequest;
+import com.creditcardanalyzer.mscreditcard.domain.dtos.CardsByClientListResponse;
+import com.creditcardanalyzer.mscreditcard.domain.dtos.CreditCardListResponse;
+import com.creditcardanalyzer.mscreditcard.domain.dtos.CreditCardSaveRequest;
 import com.creditcardanalyzer.mscreditcard.service.ClientCardService;
 import com.creditcardanalyzer.mscreditcard.service.CreditCardService;
 import org.springframework.http.HttpStatus;
@@ -14,13 +14,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("cards")
-public class CreditCardController {
+public class CreditCardResource {
 
     private final CreditCardService creditCardService;
 
     private final ClientCardService clientCardService;
 
-    public CreditCardController(CreditCardService creditCardService, ClientCardService clientCardService) {
+    public CreditCardResource(CreditCardService creditCardService, ClientCardService clientCardService) {
         this.creditCardService = creditCardService;
         this.clientCardService = clientCardService;
     }

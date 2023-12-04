@@ -1,4 +1,6 @@
-package com.creditcardanalyzer.mscreditcard.domain;
+package com.creditcardanalyzer.mscreditcard.domain.dtos;
+
+import com.creditcardanalyzer.mscreditcard.domain.enums.CardBrand;
 
 import java.math.BigDecimal;
 

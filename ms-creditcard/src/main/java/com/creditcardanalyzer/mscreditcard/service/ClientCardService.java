@@ -1,13 +1,12 @@
 package com.creditcardanalyzer.mscreditcard.service;
 
-import com.creditcardanalyzer.mscreditcard.domain.CardsByClientListResponse;
-import com.creditcardanalyzer.mscreditcard.domain.ClientCard;
-import com.creditcardanalyzer.mscreditcard.domain.CreditCard;
+import com.creditcardanalyzer.mscreditcard.domain.dtos.CardsByClientListResponse;
+import com.creditcardanalyzer.mscreditcard.domain.models.ClientCard;
+import com.creditcardanalyzer.mscreditcard.domain.models.CreditCard;
 import com.creditcardanalyzer.mscreditcard.repository.ClientCardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 

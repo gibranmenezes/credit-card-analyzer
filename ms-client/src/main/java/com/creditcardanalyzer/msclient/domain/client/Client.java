@@ -1,5 +1,6 @@
 package com.creditcardanalyzer.msclient.domain.client;
 
+import com.creditcardanalyzer.msclient.domain.client.dtos.ClientRegisterDto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

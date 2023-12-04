@@ -1,8 +1,7 @@
 package com.creditcardanalyzer.mscreditcard.repository;
 
-import com.creditcardanalyzer.mscreditcard.domain.CreditCard;
+import com.creditcardanalyzer.mscreditcard.domain.models.CreditCard;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import java.math.BigDecimal;
 import java.util.List;

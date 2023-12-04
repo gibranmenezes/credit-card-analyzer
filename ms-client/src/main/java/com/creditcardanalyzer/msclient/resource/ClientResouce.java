@@ -1,8 +1,7 @@
-package com.creditcardanalyzer.msclient.controllers;
+package com.creditcardanalyzer.msclient.resource;
 
-import com.creditcardanalyzer.msclient.domain.client.Client;
-import com.creditcardanalyzer.msclient.domain.client.ClientListingDto;
-import com.creditcardanalyzer.msclient.domain.client.ClientRegisterDto;
+import com.creditcardanalyzer.msclient.domain.client.dtos.ClientListingDto;
+import com.creditcardanalyzer.msclient.domain.client.dtos.ClientRegisterDto;
 import com.creditcardanalyzer.msclient.services.ClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -13,12 +12,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("clients")
 @RequiredArgsConstructor
-public class ClientController {
+public class ClientResouce {
 
   private final ClientService clientService;
 

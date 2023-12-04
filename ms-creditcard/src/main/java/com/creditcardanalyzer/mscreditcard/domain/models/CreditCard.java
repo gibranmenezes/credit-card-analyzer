@@ -1,5 +1,7 @@
-package com.creditcardanalyzer.mscreditcard.domain;
+package com.creditcardanalyzer.mscreditcard.domain.models;
 
+import com.creditcardanalyzer.mscreditcard.domain.enums.CardBrand;
+import com.creditcardanalyzer.mscreditcard.domain.dtos.CreditCardSaveRequest;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
