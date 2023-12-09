@@ -1,10 +1,12 @@
 package com.creditcardanalyzer.mscreditanalyzer.domain.model;
 
 
-public record ClientStatusResponse(Long id, String name) {
+import java.util.List;
+
+public record ClientStatusResponse(Long id, String name, List<ClientCard> cards) {
 
     public ClientStatusResponse(ClientStatus clientStatus) {
-        this(clientStatus.getClient().getId(), clientStatus.getClient().getName());
+        this(clientStatus.getClient().getId(), clientStatus.getClient().getName(), clientStatus.getCards());
 
     }
 
