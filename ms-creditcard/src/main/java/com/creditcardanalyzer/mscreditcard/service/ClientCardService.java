@@ -27,7 +27,7 @@ public class ClientCardService {
         CreditCard creditCard = clientCard.getCards();
 
         return new CardsByClientListResponse(
-                clientCard.getCpf(),
+                clientCard.getName(),
                 creditCard.getBrand().toString(),
                 creditCard.getBaseLimit()
         );

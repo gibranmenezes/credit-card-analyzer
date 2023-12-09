@@ -5,6 +5,7 @@ import com.creditcardanalyzer.mscreditcard.domain.dtos.CreditCardListResponse;
 import com.creditcardanalyzer.mscreditcard.domain.dtos.CreditCardSaveRequest;
 import com.creditcardanalyzer.mscreditcard.service.ClientCardService;
 import com.creditcardanalyzer.mscreditcard.service.CreditCardService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,16 +15,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("cards")
+@RequiredArgsConstructor
 public class CreditCardResource {
 
     private final CreditCardService creditCardService;
 
     private final ClientCardService clientCardService;
 
-    public CreditCardResource(CreditCardService creditCardService, ClientCardService clientCardService) {
-        this.creditCardService = creditCardService;
-        this.clientCardService = clientCardService;
-    }
 
     @GetMapping
     public String status() {

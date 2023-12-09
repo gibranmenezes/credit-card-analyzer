@@ -1,6 +1,6 @@
 package com.creditcardanalyzer.msclient.domain.client;
 
-import com.creditcardanalyzer.msclient.domain.client.dtos.ClientRegisterDto;
+import com.creditcardanalyzer.msclient.domain.client.dtos.ClientSaveRequest;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -24,7 +24,7 @@ public class Client implements Serializable {
     private String email;
     private Integer age;
 
-    public Client(ClientRegisterDto data){
+    public Client(ClientSaveRequest data){
         this.name = data.name();
         this.cpf = data.cpf();
         this.email = data.email();
