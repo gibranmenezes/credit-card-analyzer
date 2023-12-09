@@ -12,9 +12,9 @@ public class ApprovedCard {
     String brand;
     BigDecimal approvedLimit;
 
-    public ApprovedCard(CreditCard data, BigDecimal approvedLimit) {
-        this.card = data.name();
-        this.brand = data.brand();
+    public ApprovedCard(CreditCard creditCard, BigDecimal approvedLimit) {
+        this.card = creditCard.getName();
+        this.brand = creditCard.getBrand();
         this.approvedLimit  = approvedLimit;
 
     }

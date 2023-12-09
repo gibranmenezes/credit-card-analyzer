@@ -16,5 +16,5 @@ public interface CardResourceClient {
     ResponseEntity<List<ClientCard>> getCardsByClientList(@RequestParam(value="cpf") String cpf);
 
     @GetMapping(params = {"income"})
-   ResponseEntity<List<CreditCard>> getCardsByIncomeRange(@RequestParam(value = "income") Long income)
+   ResponseEntity<List<CreditCard>> getCardsByIncomeRange(@RequestParam(value = "income") Long income);
 }
