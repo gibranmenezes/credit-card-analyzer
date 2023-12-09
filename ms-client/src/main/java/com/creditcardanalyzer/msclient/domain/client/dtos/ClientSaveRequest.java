@@ -2,9 +2,8 @@ package com.creditcardanalyzer.msclient.domain.client.dtos;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 
-public record ClientRegisterDto(
+public record ClientSaveRequest(
         @NotBlank
         String name,
         @NotBlank

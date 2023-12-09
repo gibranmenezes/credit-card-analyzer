@@ -1,7 +1,8 @@
 package com.creditcardanalyzer.msclient.resource;
 
-import com.creditcardanalyzer.msclient.domain.client.dtos.ClientListingDto;
-import com.creditcardanalyzer.msclient.domain.client.dtos.ClientRegisterDto;
+import com.creditcardanalyzer.msclient.domain.client.dtos.ClientDataResponse;
+import com.creditcardanalyzer.msclient.domain.client.dtos.ClientSaveResponse;
+import com.creditcardanalyzer.msclient.domain.client.dtos.ClientSaveRequest;
 import com.creditcardanalyzer.msclient.services.ClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,7 +22,7 @@ public class ClientResouce {
   private final ClientService clientService;
 
     @GetMapping
-    public ResponseEntity<List<ClientListingDto>> listAll() {
+    public ResponseEntity<List<ClientSaveResponse>> listAll() {
         return ResponseEntity.status(HttpStatus.OK).body(clientService.listAll()); 
     }
 
@@ -30,15 +31,17 @@ public class ClientResouce {
         var client = clientService.findClientByCpf(cpf);
         if (client.isEmpty()) {
             return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok().body(new ClientDataResponse(client));
         }
-        return ResponseEntity.ok(client);
+
     }
     @Transactional
     @PostMapping
-    public ResponseEntity register(@RequestBody @Valid ClientRegisterDto data, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity register(@RequestBody @Valid ClientSaveRequest data, UriComponentsBuilder uriBuilder) {
         var client = clientService.save(data);
         var uri = uriBuilder.path("/clients/{id}").buildAndExpand(client.getId()).toUri();
 
-        return ResponseEntity.created(uri).body(new ClientListingDto(client));
+        return ResponseEntity.created(uri).body(new ClientSaveResponse(client));
     }
 }

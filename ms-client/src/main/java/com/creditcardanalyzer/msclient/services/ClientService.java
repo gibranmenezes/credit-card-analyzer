@@ -1,8 +1,8 @@
 package com.creditcardanalyzer.msclient.services;
 
 import com.creditcardanalyzer.msclient.domain.client.Client;
-import com.creditcardanalyzer.msclient.domain.client.dtos.ClientListingDto;
-import com.creditcardanalyzer.msclient.domain.client.dtos.ClientRegisterDto;
+import com.creditcardanalyzer.msclient.domain.client.dtos.ClientSaveResponse;
+import com.creditcardanalyzer.msclient.domain.client.dtos.ClientSaveRequest;
 import com.creditcardanalyzer.msclient.infra.repositories.ClientRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,19 +16,20 @@ public class ClientService {
         this.repository = repository;
     }
 
-    public List<ClientListingDto> listAll(){
+    public List<ClientSaveResponse> listAll(){
         return repository.findAll()
                 .stream()
-                .map(ClientListingDto::new)
+                .map(ClientSaveResponse::new)
                 .toList();
 
     }
 
     public Optional<Client> findClientByCpf(String cpf){
+        var client = repository.findByCpf(cpf).orElse(null);
         return repository.findByCpf(cpf);
     }
 
-    public Client save(ClientRegisterDto data) {
+    public Client save(ClientSaveRequest data) {
         var client = new Client(data);
         return repository.save(client);
     }
