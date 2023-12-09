@@ -35,7 +35,14 @@ public class CreditAnalyzerController {
 
     @PostMapping
     public ResponseEntity doAnalysis(@RequestBody AnalysisDataRequest data) {
-
+        try {
+            var clientAnalysisResponse = creditAnalyzerService.doAnalysis(data.cpf(), data.income());
+            return ResponseEntity.ok(clientAnalysisResponse);
+        } catch (ClientDataNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        } catch (ServicesComunicationErrorException e) {
+            return ResponseEntity.status(HttpStatus.resolve(e.getStatus())).body(e.getMessage());
+        }
 
     }
 }

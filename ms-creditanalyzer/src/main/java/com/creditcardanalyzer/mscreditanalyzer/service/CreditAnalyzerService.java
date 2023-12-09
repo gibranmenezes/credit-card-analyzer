@@ -1,9 +1,8 @@
 package com.creditcardanalyzer.mscreditanalyzer.service;
 
 import com.creditcardanalyzer.mscreditanalyzer.domain.ClientAnalysisResponse;
-import com.creditcardanalyzer.mscreditanalyzer.domain.model.CreditCard;
-import com.creditcardanalyzer.mscreditanalyzer.domain.model.*;
 import com.creditcardanalyzer.mscreditanalyzer.domain.ClientStatusResponse;
+import com.creditcardanalyzer.mscreditanalyzer.domain.model.*;
 import com.creditcardanalyzer.mscreditanalyzer.infra.clients.CardResourceClient;
 import com.creditcardanalyzer.mscreditanalyzer.infra.clients.ClientResourceClient;
 import com.creditcardanalyzer.mscreditanalyzer.infra.exceptions.ClientDataNotFoundException;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -59,7 +57,8 @@ public class CreditAnalyzerService {
                 var approvedCard = new ApprovedCard();
                 approvedCard.setCard(card.getName());
                 approvedCard.setBrand(card.getBrand());
-                approvedCard.setApprovedLimit(calculateApprovedLimit(card.getBaseLimit(),BigDecimal.valueOf(client.getAge())));
+                var age = BigDecimal.valueOf(client.getAge());
+                approvedCard.setApprovedLimit(calculateApprovedLimit(card.getBaseLimit(),age));
 
                 return approvedCard;
             }).toList();
