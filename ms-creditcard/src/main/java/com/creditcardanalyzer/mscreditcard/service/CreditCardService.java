@@ -3,7 +3,7 @@ package com.creditcardanalyzer.mscreditcard.service;
 import com.creditcardanalyzer.mscreditcard.domain.models.CreditCard;
 import com.creditcardanalyzer.mscreditcard.domain.dtos.CreditCardListResponse;
 import com.creditcardanalyzer.mscreditcard.domain.dtos.CreditCardSaveRequest;
-import com.creditcardanalyzer.mscreditcard.repository.CreditCardRepository;
+import com.creditcardanalyzer.mscreditcard.infra.repositories.CreditCardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

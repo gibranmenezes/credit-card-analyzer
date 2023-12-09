@@ -1,4 +1,4 @@
-package com.creditcardanalyzer.mscreditcard.repository;
+package com.creditcardanalyzer.mscreditcard.infra.repositories;
 
 import com.creditcardanalyzer.mscreditcard.domain.models.CreditCard;
 import org.springframework.data.jpa.repository.JpaRepository;
