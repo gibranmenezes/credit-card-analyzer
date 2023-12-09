@@ -1,16 +1,13 @@
 package com.creditcardanalyzer.mscreditanalyzer.controller;
 
-import com.creditcardanalyzer.mscreditanalyzer.domain.model.ClientStatusResponse;
+import com.creditcardanalyzer.mscreditanalyzer.domain.AnalysisDataRequest;
 import com.creditcardanalyzer.mscreditanalyzer.infra.exceptions.ClientDataNotFoundException;
 import com.creditcardanalyzer.mscreditanalyzer.infra.exceptions.ServicesComunicationErrorException;
 import com.creditcardanalyzer.mscreditanalyzer.service.CreditAnalyzerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("credit-analisys")
@@ -34,5 +31,11 @@ public class CreditAnalyzerController {
         }catch (ServicesComunicationErrorException e) {
             return ResponseEntity.status(HttpStatus.resolve(e.getStatus())).body(e.getMessage());
         }
+    }
+
+    @PostMapping
+    public ResponseEntity doAnalysis(@RequestBody AnalysisDataRequest data) {
+
+
     }
 }

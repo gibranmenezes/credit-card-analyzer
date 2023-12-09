@@ -1,9 +1,9 @@
 package com.creditcardanalyzer.mscreditanalyzer.service;
 
-import com.creditcardanalyzer.mscreditanalyzer.domain.model.ClientCard;
-import com.creditcardanalyzer.mscreditanalyzer.domain.model.ClientData;
-import com.creditcardanalyzer.mscreditanalyzer.domain.model.ClientStatus;
-import com.creditcardanalyzer.mscreditanalyzer.domain.model.ClientStatusResponse;
+import com.creditcardanalyzer.mscreditanalyzer.domain.ClientAnalysisResponse;
+import com.creditcardanalyzer.mscreditanalyzer.domain.model.CreditCard;
+import com.creditcardanalyzer.mscreditanalyzer.domain.model.*;
+import com.creditcardanalyzer.mscreditanalyzer.domain.ClientStatusResponse;
 import com.creditcardanalyzer.mscreditanalyzer.infra.clients.CardResourceClient;
 import com.creditcardanalyzer.mscreditanalyzer.infra.clients.ClientResourceClient;
 import com.creditcardanalyzer.mscreditanalyzer.infra.exceptions.ClientDataNotFoundException;
@@ -14,7 +14,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -43,5 +45,37 @@ public class CreditAnalyzerService {
             }
             throw new ServicesComunicationErrorException(e.getMessage(), status);
         }
+    }
+
+    public ClientAnalysisResponse doAnalysis(String cpf, Long income)
+            throws ClientDataNotFoundException, ServicesComunicationErrorException{
+        try {
+            ResponseEntity<ClientData> clientData = clientResource.getClientByCpf(cpf);
+            ResponseEntity<List<CreditCard>> cardResponse = cardResource.getCardsByIncomeRange(income);
+
+            List<CreditCard> cards = cardResponse.getBody();
+            var approvedCards = cards.stream().map(card -> {
+                var  client = clientData.getBody();
+                var approvedCard = new ApprovedCard();
+                approvedCard.setCard(card.getName());
+                approvedCard.setBrand(card.getBrand());
+                approvedCard.setApprovedLimit(calculateApprovedLimit(card.getBaseLimit(),BigDecimal.valueOf(client.getAge())));
+
+                return approvedCard;
+            }).toList();
+            return new ClientAnalysisResponse(approvedCards);
+        } catch (FeignException.FeignClientException e) {
+            int status = e.status();
+            if (clientDataValidator.validate(status)) {
+                throw new ClientDataNotFoundException();
+            }
+            throw new ServicesComunicationErrorException(e.getMessage(), status);
+        }
+    }
+
+    private BigDecimal calculateApprovedLimit(BigDecimal baseLimit, BigDecimal age){
+        var factor = age.divide(BigDecimal.valueOf(10));
+        return factor.multiply(baseLimit);
+
     }
 }

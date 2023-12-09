@@ -1,5 +1,6 @@
 package com.creditcardanalyzer.mscreditanalyzer.infra.clients;
 
+import com.creditcardanalyzer.mscreditanalyzer.domain.model.CreditCard;
 import com.creditcardanalyzer.mscreditanalyzer.domain.model.ClientCard;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
@@ -13,4 +14,7 @@ public interface CardResourceClient {
 
     @GetMapping(params = "cpf" )
     ResponseEntity<List<ClientCard>> getCardsByClientList(@RequestParam(value="cpf") String cpf);
+
+    @GetMapping(params = {"income"})
+   ResponseEntity<List<CreditCard>> getCardsByIncomeRange(@RequestParam(value = "income") Long income)
 }

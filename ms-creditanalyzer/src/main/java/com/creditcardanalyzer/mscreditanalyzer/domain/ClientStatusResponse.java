@@ -1,5 +1,8 @@
-package com.creditcardanalyzer.mscreditanalyzer.domain.model;
+package com.creditcardanalyzer.mscreditanalyzer.domain;
 
+
+import com.creditcardanalyzer.mscreditanalyzer.domain.model.ClientCard;
+import com.creditcardanalyzer.mscreditanalyzer.domain.model.ClientStatus;
 
 import java.util.List;
 
