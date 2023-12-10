@@ -1,4 +1,4 @@
-package com.creditcardanalyzer.mscreditanalyzer.infra.clients;
+package com.creditcardanalyzer.mscreditanalyzer.infra.resources;
 
 import com.creditcardanalyzer.mscreditanalyzer.domain.model.ClientData;
 import org.springframework.cloud.openfeign.FeignClient;

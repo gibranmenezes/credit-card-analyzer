@@ -1,4 +1,4 @@
-package com.creditcardanalyzer.mscreditanalyzer.domain;
+package com.creditcardanalyzer.mscreditanalyzer.domain.model;
 
 import com.creditcardanalyzer.mscreditanalyzer.domain.model.ApprovedCard;
 import lombok.AllArgsConstructor;

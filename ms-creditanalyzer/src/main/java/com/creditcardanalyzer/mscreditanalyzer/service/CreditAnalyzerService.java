@@ -1,10 +1,10 @@
 package com.creditcardanalyzer.mscreditanalyzer.service;
 
-import com.creditcardanalyzer.mscreditanalyzer.domain.ClientAnalysisResponse;
+import com.creditcardanalyzer.mscreditanalyzer.domain.model.ClientAnalysisResponse;
 import com.creditcardanalyzer.mscreditanalyzer.domain.ClientStatusResponse;
 import com.creditcardanalyzer.mscreditanalyzer.domain.model.*;
-import com.creditcardanalyzer.mscreditanalyzer.infra.clients.CardResourceClient;
-import com.creditcardanalyzer.mscreditanalyzer.infra.clients.ClientResourceClient;
+import com.creditcardanalyzer.mscreditanalyzer.infra.resources.CardResourceClient;
+import com.creditcardanalyzer.mscreditanalyzer.infra.resources.ClientResourceClient;
 import com.creditcardanalyzer.mscreditanalyzer.infra.exceptions.ClientDataNotFoundException;
 import com.creditcardanalyzer.mscreditanalyzer.infra.exceptions.ServicesComunicationErrorException;
 import com.creditcardanalyzer.mscreditanalyzer.infra.validations.ClientDataFoundValidation;
