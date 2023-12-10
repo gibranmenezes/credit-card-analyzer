@@ -1,8 +1,12 @@
 package com.creditcardanalyzer.mscreditanalyzer.service;
 
+import com.creditcardanalyzer.mscreditanalyzer.domain.CardIssuingProtocol;
+import com.creditcardanalyzer.mscreditanalyzer.domain.CardIssuingRequestData;
 import com.creditcardanalyzer.mscreditanalyzer.domain.model.ClientAnalysisResponse;
 import com.creditcardanalyzer.mscreditanalyzer.domain.ClientStatusResponse;
 import com.creditcardanalyzer.mscreditanalyzer.domain.model.*;
+import com.creditcardanalyzer.mscreditanalyzer.infra.exceptions.CardIssuingRequestError;
+import com.creditcardanalyzer.mscreditanalyzer.infra.mqueue.CardIssuingRequestPublisher;
 import com.creditcardanalyzer.mscreditanalyzer.infra.resources.CardResourceClient;
 import com.creditcardanalyzer.mscreditanalyzer.infra.resources.ClientResourceClient;
 import com.creditcardanalyzer.mscreditanalyzer.infra.exceptions.ClientDataNotFoundException;
@@ -15,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -23,6 +28,7 @@ public class CreditAnalyzerService {
     private final ClientResourceClient clientResource;
     private final CardResourceClient cardResource;
     private final ClientDataFoundValidation clientDataValidator;
+    private final CardIssuingRequestPublisher cardIssuingRequestPublisher;
 
     public ClientStatusResponse getClientStatus(String cpf)
             throws ClientDataNotFoundException, ServicesComunicationErrorException {
@@ -71,6 +77,20 @@ public class CreditAnalyzerService {
             throw new ServicesComunicationErrorException(e.getMessage(), status);
         }
     }
+
+    public CardIssuingProtocol requestCardIssuing(CardIssuingRequestData data) {
+        try {
+            cardIssuingRequestPublisher.requestCard(data);
+            var protocol = UUID.randomUUID().toString();
+            return new CardIssuingProtocol(protocol);
+
+        } catch (Exception e) {
+            throw new CardIssuingRequestError(e.getMessage());
+
+        }
+    }
+
+
 
     private BigDecimal calculateApprovedLimit(BigDecimal baseLimit, BigDecimal age){
         var factor = age.divide(BigDecimal.valueOf(10));

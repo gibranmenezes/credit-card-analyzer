@@ -1,6 +1,8 @@
 package com.creditcardanalyzer.mscreditanalyzer.controller;
 
 import com.creditcardanalyzer.mscreditanalyzer.domain.AnalysisDataRequest;
+import com.creditcardanalyzer.mscreditanalyzer.domain.CardIssuingRequestData;
+import com.creditcardanalyzer.mscreditanalyzer.infra.exceptions.CardIssuingRequestError;
 import com.creditcardanalyzer.mscreditanalyzer.infra.exceptions.ClientDataNotFoundException;
 import com.creditcardanalyzer.mscreditanalyzer.infra.exceptions.ServicesComunicationErrorException;
 import com.creditcardanalyzer.mscreditanalyzer.service.CreditAnalyzerService;
@@ -44,5 +46,16 @@ public class CreditAnalyzerController {
             return ResponseEntity.status(HttpStatus.resolve(e.getStatus())).body(e.getMessage());
         }
 
+    }
+
+    @PostMapping("cards-issuing")
+    public ResponseEntity requestCard(@RequestBody CardIssuingRequestData data) {
+        try {
+            var protocolCardRequest = creditAnalyzerService.requestCardIssuing(data);
+            return ResponseEntity.ok(protocolCardRequest);
+
+        } catch (CardIssuingRequestError e) {
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        }
     }
 }
