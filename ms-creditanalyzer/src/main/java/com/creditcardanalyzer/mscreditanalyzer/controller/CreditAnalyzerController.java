@@ -24,7 +24,7 @@ public class CreditAnalyzerController {
     }
 
     @GetMapping(value = "client-status", params = "cpf")
-    public ResponseEntity clientStatusQuery(@RequestParam("cpf") String cpf){
+    public ResponseEntity getClientStatus(@RequestParam("cpf") String cpf){
         try {
             var clientStatus = creditAnalyzerService.getClientStatus(cpf);
             return ResponseEntity.ok(clientStatus);

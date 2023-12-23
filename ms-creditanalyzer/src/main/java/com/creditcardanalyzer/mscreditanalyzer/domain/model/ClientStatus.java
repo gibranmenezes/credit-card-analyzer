@@ -13,6 +13,6 @@ import java.util.List;
 @Builder
 public class ClientStatus {
     private ClientData client;
-    private List<ClientCard> cards;
+    private List<CardClient> cards;
 
 }

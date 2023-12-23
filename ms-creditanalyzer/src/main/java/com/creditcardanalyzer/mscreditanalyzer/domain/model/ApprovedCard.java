@@ -8,12 +8,12 @@ import java.math.BigDecimal;
 @Data
 @NoArgsConstructor
 public class ApprovedCard {
-    String card;
+    String cardName;
     String brand;
     BigDecimal approvedLimit;
 
     public ApprovedCard(CreditCard creditCard, BigDecimal approvedLimit) {
-        this.card = creditCard.getName();
+        this.cardName = creditCard.getName();
         this.brand = creditCard.getBrand();
         this.approvedLimit  = approvedLimit;
 

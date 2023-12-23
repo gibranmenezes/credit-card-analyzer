@@ -19,7 +19,6 @@ public class ClientCard implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name;
     private String cpf;
     private BigDecimal approvedLimit;
     @ManyToOne

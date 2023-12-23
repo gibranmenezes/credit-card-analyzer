@@ -34,11 +34,11 @@ public class CreditAnalyzerService {
             throws ClientDataNotFoundException, ServicesComunicationErrorException {
         try {
             ResponseEntity<ClientData> clientData = clientResource.getClientByCpf(cpf);
-            ResponseEntity<List<ClientCard>> clientCards = cardResource.getCardsByClientList(cpf);
+            ResponseEntity<List<CardClient>> cardsClientResponse = cardResource.getCardsByClient(cpf);
             var clientStatus = ClientStatus
                     .builder()
                     .client(clientData.getBody())
-                    .cards(clientCards.getBody())
+                    .cards(cardsClientResponse.getBody())
                     .build();
 
             return new ClientStatusResponse(clientStatus);
@@ -61,7 +61,7 @@ public class CreditAnalyzerService {
             var approvedCards = cards.stream().map(card -> {
                 var  client = clientData.getBody();
                 var approvedCard = new ApprovedCard();
-                approvedCard.setCard(card.getName());
+                approvedCard.setCardName(card.getName());
                 approvedCard.setBrand(card.getBrand());
                 var age = BigDecimal.valueOf(client.getAge());
                 approvedCard.setApprovedLimit(calculateApprovedLimit(card.getBaseLimit(),age));
@@ -89,9 +89,6 @@ public class CreditAnalyzerService {
 
         }
     }
-
-
-
     private BigDecimal calculateApprovedLimit(BigDecimal baseLimit, BigDecimal age){
         var factor = age.divide(BigDecimal.valueOf(10));
         return factor.multiply(baseLimit);

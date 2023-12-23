@@ -1,6 +1,6 @@
 package com.creditcardanalyzer.mscreditcard.resource;
 
-import com.creditcardanalyzer.mscreditcard.domain.dtos.CardsByClientListResponse;
+import com.creditcardanalyzer.mscreditcard.domain.dtos.CardsByClientResponse;
 import com.creditcardanalyzer.mscreditcard.domain.dtos.CreditCardListResponse;
 import com.creditcardanalyzer.mscreditcard.domain.dtos.CreditCardSaveRequest;
 import com.creditcardanalyzer.mscreditcard.service.ClientCardService;
@@ -42,7 +42,7 @@ public class CreditCardResource {
     }
 
     @GetMapping(params = "cpf" )
-    public ResponseEntity<List<CardsByClientListResponse>> getCardsByClientList(@RequestParam(value="cpf") String cpf) {
+    public ResponseEntity<List<CardsByClientResponse>> getCardsByClient(@RequestParam(value="cpf") String cpf) {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(clientCardService.listCardsByCpf(cpf));
     }
